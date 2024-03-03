@@ -23,6 +23,7 @@ namespace NeurometerGame
             List<Point> buttons_location = new List<Point>()
                 { new Point(20, 20), new Point(820, 20), new Point(20, 430), new Point(820, 430) };
 
+            int number_of_way = 0;
             Point[] first_way_location = new[]
             {
                 new Point(buttons_location[0].X + startButton.Width - width_way,
@@ -32,15 +33,31 @@ namespace NeurometerGame
                     (startButton.Height / 2 - width_way / 2) + buttons_location[2].Y),
                 new Point(buttons_location[3].X, (startButton.Height / 2 - width_way / 2) + buttons_location[2].Y)
             };
+            if (random.NextDouble() > 0.5)
+            {
+                number_of_way = 1;
+                first_way_location = new[]
+                {
+                    new Point(
+                        (startButton.Width / 2 - width_way / 2) + buttons_location[0].X,
+                        buttons_location[0].Y + startButton.Height - width_way),
+                    new Point(
+                        (startButton.Width / 2 - width_way / 2) + buttons_location[1].X,
+                        buttons_location[1].Y + startButton.Height - width_way),
+                    new Point((startButton.Width / 2 - width_way / 2) + buttons_location[2].X,
+                        buttons_location[2].Y),
+                    new Point((startButton.Width / 2 - width_way / 2) + buttons_location[3].X,
+                        buttons_location[3].Y)
+                };
+            }
 
-            int index_startButton_location = random.Next(buttons_location.Count), number_of_way = 0, maximum_way_size;
+            int index_startButton_location = random.Next(buttons_location.Count), maximum_way_size;
             startButton.Location = buttons_location[index_startButton_location];
             buttons_location.RemoveAt(index_startButton_location);
             endButton.Location = buttons_location[random.Next(buttons_location.Count)];
 
             Point next_way_location = first_way_location[index_startButton_location],
                 last_way_location = next_way_location;
-
 
             PictureBox way;
 
@@ -53,7 +70,7 @@ namespace NeurometerGame
                 {
                     case 1:
                         way.BackColor = Color.Red;
-                        
+
                         maximum_way_size = gamePanel.Width / 3 - gamePanel.Width % 3; // 940 / 3 = 113 
                         if (maximum_way_size + last_way_location.X > gamePanel.Width - endButton.Width - 20)
                         {
@@ -75,7 +92,7 @@ namespace NeurometerGame
                         break;
                     case 2:
                         way.BackColor = Color.Red;
-                        
+
                         maximum_way_size = gamePanel.Width / 3 - gamePanel.Width % 3; // 940 / 3 = 113 
                         if (last_way_location.X - maximum_way_size < 0 + endButton.Width + 20)
                         {
