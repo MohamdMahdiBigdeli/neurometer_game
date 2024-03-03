@@ -40,9 +40,9 @@ namespace NeurometerGame
             // next_way_location = first_way_location[index_startButton_location];
             //buttons_location.RemoveAt(index_startButton_location);
 
-            int index_startButton_location = 0, number_of_way = 0, maximum_way_size;
+            int index_startButton_location = 2, number_of_way = 0, maximum_way_size;
             startButton.Location = buttons_location[index_startButton_location];
-            endButton.Location = buttons_location[3];
+            endButton.Location = buttons_location[1];
 
             Point next_way_location = first_way_location[index_startButton_location],
                 last_way_location = next_way_location;
@@ -130,6 +130,42 @@ namespace NeurometerGame
                 return way;
             }
 
+            PictureBox CreateFinalWay(int type)
+            {
+                way = new PictureBox();
+                //way.BackColor = Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(230)))));
+                way.Name = number_of_way.ToString();
+                switch (type)
+                {
+                    case 1:
+                        way.BackColor = Color.Yellow;
+                        way.Size = new Size(endButton.Location.X - last_way_location.X, width_way);
+                        next_way_location.X += width_way;
+                        way.Location = next_way_location;
+                        break;
+                    case 2:
+                        way.BackColor = Color.Yellow;
+                        way.Size = new Size(last_way_location.X - endButton.Location.X, width_way);
+                        next_way_location.X = endButton.Location.X;
+                        way.Location = next_way_location;
+                        break;
+                    case 3:
+                        way.BackColor = Color.Blue;
+                        way.Size = new Size(width_way, endButton.Location.Y - last_way_location.Y);
+                        next_way_location.Y = last_way_location.Y;
+                        way.Location = next_way_location;
+                        break;
+                    case 4:
+                        way.BackColor = Color.Blue;
+                        way.Size = new Size(width_way, last_way_location.Y - endButton.Location.Y);
+                        next_way_location.Y = endButton.Location.Y;
+                        way.Location = next_way_location;
+                        break;
+                }
+
+                return way;
+            }
+
             if (startButton.Location.X == 20)
             {
                 if (startButton.Location.Y == 20)
@@ -154,22 +190,12 @@ namespace NeurometerGame
                             switch (endButton.Location.Y)
                             {
                                 case 20:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Blue;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(width_way, last_way_location.Y - endButton.Location.Y);
-                                    next_way_location.Y = endButton.Location.Y;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(4));
                                     break;
                                 case 430:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Blue;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(width_way, endButton.Location.Y - last_way_location.Y);
-                                    next_way_location.Y = last_way_location.Y;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(3));
                                     break;
                             }
 
@@ -177,28 +203,18 @@ namespace NeurometerGame
                         }
 
                         if (number_of_way > 2 &&
-                            (last_way_location.Y > endButton.Location.Y && last_way_location.Y <
+                            (last_way_location.Y - width_way > endButton.Location.Y && last_way_location.Y <
                                 endButton.Location.Y + endButton.Height - width_way))
                         {
                             switch (endButton.Location.X)
                             {
                                 case 20:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Yellow;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(last_way_location.X - endButton.Location.X, width_way);
-                                    next_way_location.X = endButton.Location.X;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(2));
                                     break;
                                 case 820:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Yellow;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(endButton.Location.X - last_way_location.X, width_way);
-                                    next_way_location.X += width_way;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(1));
                                     break;
                             }
 
@@ -228,22 +244,12 @@ namespace NeurometerGame
                             switch (endButton.Location.Y)
                             {
                                 case 20:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Blue;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(width_way, last_way_location.Y - endButton.Location.Y);
-                                    next_way_location.Y = endButton.Location.Y;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(4));
                                     break;
                                 case 430:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Blue;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(width_way, endButton.Location.Y - last_way_location.Y);
-                                    next_way_location.Y = last_way_location.Y;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(3));
                                     break;
                             }
 
@@ -251,28 +257,18 @@ namespace NeurometerGame
                         }
 
                         if (number_of_way > 2 &&
-                            (last_way_location.Y > endButton.Location.Y && last_way_location.Y <
+                            (last_way_location.Y - width_way > endButton.Location.Y && last_way_location.Y <
                                 endButton.Location.Y + endButton.Height - width_way))
                         {
                             switch (endButton.Location.X)
                             {
                                 case 20:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Yellow;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(last_way_location.X - endButton.Location.X, width_way);
-                                    next_way_location.X = endButton.Location.X;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(2));
                                     break;
                                 case 820:
-                                    way = new PictureBox();
-                                    way.BackColor = Color.Yellow;
-                                    way.Name = number_of_way.ToString();
-                                    way.Size = new Size(endButton.Location.X - last_way_location.X, width_way);
-                                    next_way_location.X += width_way;
-                                    way.Location = next_way_location;
-                                    gamePanel.Controls.Add(way);
+                                    number_of_way++;
+                                    gamePanel.Controls.Add(CreateFinalWay(1));
                                     break;
                             }
 
