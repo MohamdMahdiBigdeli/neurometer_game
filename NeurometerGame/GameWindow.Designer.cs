@@ -33,6 +33,7 @@
             this.gamePanel = new System.Windows.Forms.Panel();
             this.endButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
+            this.reset = new System.Windows.Forms.Button();
             this.gamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             this.gamePanel.Name = "gamePanel";
             this.gamePanel.Size = new System.Drawing.Size(940, 550);
             this.gamePanel.TabIndex = 0;
+            this.gamePanel.MouseEnter += new System.EventHandler(this.gamePanel_MouseEnter);
             // 
             // endButton
             // 
@@ -64,6 +66,7 @@
             this.endButton.TabStop = false;
             this.endButton.Text = "end";
             this.endButton.UseVisualStyleBackColor = false;
+            this.endButton.MouseEnter += new System.EventHandler(this.endButton_MouseEnter);
             // 
             // startButton
             // 
@@ -81,11 +84,33 @@
             this.startButton.TabStop = false;
             this.startButton.Text = "start";
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // reset
+            // 
+            this.reset.BackColor = System.Drawing.Color.Transparent;
+            this.reset.BackgroundImage = global::NeurometerGame.Properties.Resources.reset_down;
+            this.reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.reset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.reset.FlatAppearance.BorderSize = 0;
+            this.reset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.reset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reset.Location = new System.Drawing.Point(900, 35);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(50, 50);
+            this.reset.TabIndex = 1;
+            this.reset.TabStop = false;
+            this.reset.UseVisualStyleBackColor = false;
+            this.reset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.reset_MouseDown);
+            this.reset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.reset_MouseUp);
             // 
             // GameWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1000, 700);
+            this.Controls.Add(this.reset);
             this.Controls.Add(this.gamePanel);
             this.Font = new System.Drawing.Font("MS Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -95,6 +120,8 @@
             this.gamePanel.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button reset;
 
         private System.Windows.Forms.Button endButton;
 

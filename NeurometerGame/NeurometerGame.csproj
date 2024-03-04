@@ -79,5 +79,9 @@
     <ItemGroup>
         <None Include="App.config"/>
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\reset_down.png" />
+      <Content Include="Resources\reset_up.png" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>
