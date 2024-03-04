@@ -420,6 +420,9 @@ namespace NeurometerGame
         private void startButton_Click(object sender, EventArgs e)
         {
             game_started = true;
+            second.Text = "0/0";
+            minutes.Text = "00";
+            timer.Enabled = true;
         }
 
         private void gamePanel_MouseEnter(object sender, EventArgs e)
@@ -431,11 +434,24 @@ namespace NeurometerGame
         private void endButton_MouseEnter(object sender, EventArgs e)
         {
             game_started = false;
+            timer.Enabled = false;
+        }
+
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            second.Text = (Math.Round(float.Parse(second.Text) + 0.01, 2)).ToString();
+            if (float.Parse(second.Text) == 60.00)
+            {
+                second.Text = "0/0";
+                minutes.Text = (int.Parse(minutes.Text) + 1).ToString();
+            }
         }
 
         private void reset_MouseDown(object sender, MouseEventArgs e)
         {
             reset.BackgroundImage = Properties.Resources.reset_down;
+            second.Text = "0/0";
+            minutes.Text = "00";
         }
 
         private void reset_MouseUp(object sender, MouseEventArgs e)
