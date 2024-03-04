@@ -27,11 +27,11 @@ namespace NeurometerGame
             Point[] first_way_location = new[]
             {
                 new Point(buttons_location[0].X + startButton.Width - width_way,
-                    (startButton.Height / 2 - width_way / 2) + buttons_location[0].Y),
-                new Point(buttons_location[1].X, (startButton.Height / 2 - width_way / 2) + buttons_location[1].Y),
+                    random.Next(0,startButton.Height - width_way) + buttons_location[0].Y),
+                new Point(buttons_location[1].X, random.Next(0,startButton.Height - width_way) + buttons_location[1].Y),
                 new Point(buttons_location[2].X + startButton.Width - width_way,
-                    (startButton.Height / 2 - width_way / 2) + buttons_location[2].Y),
-                new Point(buttons_location[3].X, (startButton.Height / 2 - width_way / 2) + buttons_location[2].Y)
+                    random.Next(0,startButton.Height - width_way) + buttons_location[2].Y),
+                new Point(buttons_location[3].X, random.Next(0,startButton.Height - width_way) + buttons_location[2].Y)
             };
             if (random.NextDouble() > 0.5)
             {
@@ -39,14 +39,14 @@ namespace NeurometerGame
                 first_way_location = new[]
                 {
                     new Point(
-                        (startButton.Width / 2 - width_way / 2) + buttons_location[0].X,
+                        random.Next(0,startButton.Width - width_way) + buttons_location[0].X,
                         buttons_location[0].Y + startButton.Height - width_way),
                     new Point(
-                        (startButton.Width / 2 - width_way / 2) + buttons_location[1].X,
+                        random.Next(0,startButton.Width - width_way) + buttons_location[1].X,
                         buttons_location[1].Y + startButton.Height - width_way),
-                    new Point((startButton.Width / 2 - width_way / 2) + buttons_location[2].X,
+                    new Point(random.Next(0,startButton.Width - width_way) + buttons_location[2].X,
                         buttons_location[2].Y),
-                    new Point((startButton.Width / 2 - width_way / 2) + buttons_location[3].X,
+                    new Point(random.Next(0,startButton.Width - width_way) + buttons_location[3].X,
                         buttons_location[3].Y)
                 };
             }
