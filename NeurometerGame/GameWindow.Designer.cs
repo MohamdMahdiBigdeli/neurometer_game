@@ -131,7 +131,7 @@
             this.second.Name = "second";
             this.second.Size = new System.Drawing.Size(100, 50);
             this.second.TabIndex = 1;
-            this.second.Text = "0/0";
+            this.second.Text = "0.0";
             this.second.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1

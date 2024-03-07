@@ -415,12 +415,19 @@ namespace NeurometerGame
         {
             InitializeComponent();
             CreateNeurometer();
+            
+            //Convert "." to system default decimal symbol
+            var current = System.Threading.Thread.CurrentThread.CurrentCulture;
+            var culture = System.Globalization.CultureInfo.CreateSpecificCulture(current.Name); 
+            culture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
             game_started = true;
-            second.Text = "0/0";
+            second.Text = "0.0";
             minutes.Text = "00";
             timer.Enabled = true;
         }
@@ -428,13 +435,20 @@ namespace NeurometerGame
         private void gamePanel_MouseEnter(object sender, EventArgs e)
         {
             if (game_started)
-                this.Close();
+            {
+                timer.Enabled = false;
+                game_started = false;
+                MessageBox.Show("You went out of the way and lost!", "Game over!", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                second.Text = "0.0";
+                minutes.Text = "00";
+            }
         }
 
         private void endButton_MouseEnter(object sender, EventArgs e)
         {
             game_started = false;
             timer.Enabled = false;
+            MessageBox.Show("You reached the end and won!", "Game over!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -442,7 +456,7 @@ namespace NeurometerGame
             second.Text = (Math.Round(float.Parse(second.Text) + 0.01, 2)).ToString();
             if (float.Parse(second.Text) == 60.00)
             {
-                second.Text = "0/0";
+                second.Text = "0.0";
                 minutes.Text = (int.Parse(minutes.Text) + 1).ToString();
             }
         }
@@ -450,7 +464,7 @@ namespace NeurometerGame
         private void reset_MouseDown(object sender, MouseEventArgs e)
         {
             reset.BackgroundImage = Properties.Resources.reset_down;
-            second.Text = "0/0";
+            second.Text = "0.0";
             minutes.Text = "00";
         }
 
