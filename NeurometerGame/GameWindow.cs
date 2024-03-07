@@ -415,10 +415,10 @@ namespace NeurometerGame
         {
             InitializeComponent();
             CreateNeurometer();
-            
-            //Convert "." to system default decimal symbol
+
+            //Convert "." to game default decimal symbol for timer.
             var current = System.Threading.Thread.CurrentThread.CurrentCulture;
-            var culture = System.Globalization.CultureInfo.CreateSpecificCulture(current.Name); 
+            var culture = System.Globalization.CultureInfo.CreateSpecificCulture(current.Name);
             culture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
@@ -438,7 +438,8 @@ namespace NeurometerGame
             {
                 timer.Enabled = false;
                 game_started = false;
-                MessageBox.Show("You went out of the way and lost!", "Game over!", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("You went out of the way and lost!", "Game over!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 second.Text = "0.0";
                 minutes.Text = "00";
             }
@@ -446,9 +447,13 @@ namespace NeurometerGame
 
         private void endButton_MouseEnter(object sender, EventArgs e)
         {
-            game_started = false;
-            timer.Enabled = false;
-            MessageBox.Show("You reached the end and won!", "Game over!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            if (game_started)
+            {
+                game_started = false;
+                timer.Enabled = false;
+                MessageBox.Show("You reached the end and won!", "Game over!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -461,21 +466,32 @@ namespace NeurometerGame
             }
         }
 
+        private void reset_MouseEnter(object sender, EventArgs e)
+        {
+            resetPanel.BackColor = Color.FromArgb(5, 136, 220);
+        }
+
+        private void reset_MouseLeave(object sender, EventArgs e)
+        {
+            resetPanel.BackColor = Color.FromArgb(5, 142, 230);
+        }
+
         private void reset_MouseDown(object sender, MouseEventArgs e)
         {
-            reset.BackgroundImage = Properties.Resources.reset_down;
+            resetPanel.BackColor = Color.FromArgb(5, 130, 210);
             second.Text = "0.0";
             minutes.Text = "00";
         }
 
         private void reset_MouseUp(object sender, MouseEventArgs e)
         {
-            reset.BackgroundImage = Properties.Resources.reset_up;
-            
+            resetPanel.BackColor = Color.FromArgb(5, 142, 230);
+
             foreach (PictureBox i in gamePanel.Controls.OfType<PictureBox>().ToList())
             {
                 gamePanel.Controls.Remove(i);
             }
+
             CreateNeurometer();
         }
     }

@@ -33,15 +33,25 @@
             this.startButton = new System.Windows.Forms.Button();
             this.endButton = new System.Windows.Forms.Button();
             this.gamePanel = new System.Windows.Forms.Panel();
-            this.reset = new System.Windows.Forms.Button();
             this.minutes = new System.Windows.Forms.Label();
             this.second = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.time = new System.Windows.Forms.Panel();
+            this.timerPanel = new System.Windows.Forms.Panel();
             this.timer = new System.Timers.Timer();
+            this.resetPanel = new System.Windows.Forms.Panel();
+            this.reset = new System.Windows.Forms.PictureBox();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuGame = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGameSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGameImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsColor = new System.Windows.Forms.ToolStripMenuItem();
             this.gamePanel.SuspendLayout();
-            this.time.SuspendLayout();
+            this.timerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
+            this.resetPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reset)).BeginInit();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
@@ -93,25 +103,6 @@
             this.gamePanel.TabIndex = 0;
             this.gamePanel.MouseEnter += new System.EventHandler(this.gamePanel_MouseEnter);
             // 
-            // reset
-            // 
-            this.reset.BackColor = System.Drawing.Color.Transparent;
-            this.reset.BackgroundImage = global::NeurometerGame.Properties.Resources.reset_up;
-            this.reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.reset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.reset.FlatAppearance.BorderSize = 0;
-            this.reset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.reset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reset.Location = new System.Drawing.Point(900, 35);
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(50, 50);
-            this.reset.TabIndex = 1;
-            this.reset.TabStop = false;
-            this.reset.UseVisualStyleBackColor = false;
-            this.reset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.reset_MouseDown);
-            this.reset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.reset_MouseUp);
-            // 
             // minutes
             // 
             this.minutes.BackColor = System.Drawing.Color.Transparent;
@@ -145,17 +136,17 @@
             this.label1.Text = ":";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // time
+            // timerPanel
             // 
-            this.time.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.time.Controls.Add(this.label1);
-            this.time.Controls.Add(this.second);
-            this.time.Controls.Add(this.minutes);
-            this.time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
-            this.time.Location = new System.Drawing.Point(50, 35);
-            this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(170, 50);
-            this.time.TabIndex = 2;
+            this.timerPanel.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.timerPanel.Controls.Add(this.label1);
+            this.timerPanel.Controls.Add(this.second);
+            this.timerPanel.Controls.Add(this.minutes);
+            this.timerPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.timerPanel.Location = new System.Drawing.Point(50, 55);
+            this.timerPanel.Name = "timerPanel";
+            this.timerPanel.Size = new System.Drawing.Size(170, 50);
+            this.timerPanel.TabIndex = 2;
             // 
             // timer
             // 
@@ -163,35 +154,135 @@
             this.timer.SynchronizingObject = this;
             this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.timer_Elapsed);
             // 
+            // resetPanel
+            // 
+            this.resetPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(230)))));
+            this.resetPanel.Controls.Add(this.reset);
+            this.resetPanel.Location = new System.Drawing.Point(900, 55);
+            this.resetPanel.Name = "resetPanel";
+            this.resetPanel.Size = new System.Drawing.Size(50, 50);
+            this.resetPanel.TabIndex = 3;
+            // 
+            // reset
+            // 
+            this.reset.BackColor = System.Drawing.Color.Transparent;
+            this.reset.Image = ((System.Drawing.Image)(resources.GetObject("reset.Image")));
+            this.reset.Location = new System.Drawing.Point(0, 0);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(50, 50);
+            this.reset.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.reset.TabIndex = 4;
+            this.reset.TabStop = false;
+            this.reset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.reset_MouseDown);
+            this.reset.MouseEnter += new System.EventHandler(this.reset_MouseEnter);
+            this.reset.MouseLeave += new System.EventHandler(this.reset_MouseLeave);
+            this.reset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.reset_MouseUp);
+            // 
+            // menu
+            // 
+            this.menu.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.menu.Font = new System.Drawing.Font("MS Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuGame, this.menuOptions });
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(1000, 40);
+            this.menu.TabIndex = 4;
+            // 
+            // menuGame
+            // 
+            this.menuGame.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuGameSave, this.menuGameImport });
+            this.menuGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuGame.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuGame.Name = "menuGame";
+            this.menuGame.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.menuGame.Size = new System.Drawing.Size(70, 32);
+            this.menuGame.Text = "Game";
+            // 
+            // menuGameSave
+            // 
+            this.menuGameSave.BackColor = System.Drawing.Color.White;
+            this.menuGameSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuGameSave.Name = "menuGameSave";
+            this.menuGameSave.Size = new System.Drawing.Size(152, 28);
+            this.menuGameSave.Text = "Save";
+            // 
+            // menuGameImport
+            // 
+            this.menuGameImport.BackColor = System.Drawing.Color.White;
+            this.menuGameImport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuGameImport.Name = "menuGameImport";
+            this.menuGameImport.Size = new System.Drawing.Size(152, 28);
+            this.menuGameImport.Text = "Import";
+            // 
+            // menuOptions
+            // 
+            this.menuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor });
+            this.menuOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptions.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.menuOptions.Name = "menuOptions";
+            this.menuOptions.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.menuOptions.Size = new System.Drawing.Size(106, 32);
+            this.menuOptions.Text = "Options";
+            // 
+            // menuOptionsColor
+            // 
+            this.menuOptionsColor.BackColor = System.Drawing.Color.White;
+            this.menuOptionsColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsColor.Name = "menuOptionsColor";
+            this.menuOptionsColor.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor.Text = "Color";
+            // 
             // GameWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1000, 700);
-            this.Controls.Add(this.time);
-            this.Controls.Add(this.reset);
+            this.Controls.Add(this.resetPanel);
+            this.Controls.Add(this.timerPanel);
             this.Controls.Add(this.gamePanel);
+            this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("MS Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(15, 15);
+            this.MainMenuStrip = this.menu;
+            this.MaximumSize = new System.Drawing.Size(1006, 735);
+            this.MinimumSize = new System.Drawing.Size(1006, 735);
             this.Name = "GameWindow";
             this.Text = "Neuro Meter";
             this.gamePanel.ResumeLayout(false);
-            this.time.ResumeLayout(false);
+            this.timerPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
+            this.resetPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.reset)).EndInit();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem menuOptions;
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsColor;
+
+        private System.Windows.Forms.ToolStripMenuItem menuGameSave;
+        private System.Windows.Forms.ToolStripMenuItem menuGameImport;
+
+        private System.Windows.Forms.ToolStripMenuItem menuGame;
+
+        private System.Windows.Forms.MenuStrip menu;
+
+        private System.Windows.Forms.PictureBox reset;
+
+        private System.Windows.Forms.Panel resetPanel;
 
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button endButton;
         private System.Windows.Forms.Panel gamePanel;
-        private System.Windows.Forms.Button reset;
         private System.Windows.Forms.Label minutes;
         private System.Windows.Forms.Label second;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel time;
+        private System.Windows.Forms.Panel timerPanel;
         private System.Timers.Timer timer;
 
         #endregion
