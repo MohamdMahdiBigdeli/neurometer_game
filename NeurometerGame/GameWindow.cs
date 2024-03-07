@@ -17,6 +17,24 @@ namespace NeurometerGame
 
         private Random random = new Random();
 
+        private Color[,] color_palettes = new Color[2, 6]
+        {
+            {
+                Color.White, Color.LightSkyBlue, Color.FromArgb(5, 142, 230), Color.FromArgb(5, 136, 220),
+                Color.FromArgb(5, 130, 210), Color.FromArgb(5, 118, 190)
+            },
+            {
+                Color.White, Color.FromArgb( 172 , 246 , 180 ), Color.FromArgb( 21 , 188 , 41 ), Color.FromArgb( 20 , 179 , 39 ),
+                Color.FromArgb( 19 , 170 , 37 ), Color.FromArgb( 17 , 152 , 33 )
+            }
+        };
+
+        private Color[] color_palette = new Color[6]
+        {
+            Color.White, Color.LightSkyBlue, Color.FromArgb(5, 142, 230), Color.FromArgb(5, 136, 220),
+            Color.FromArgb(5, 130, 210), Color.FromArgb(5, 118, 190)
+        };
+
         private bool game_started = false;
 
         private void CreateNeurometer()
@@ -66,7 +84,7 @@ namespace NeurometerGame
             PictureBox CreateWay(int type)
             {
                 way = new PictureBox();
-                way.BackColor = Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(230)))));
+                way.BackColor = color_palette[2];
                 way.Name = number_of_way.ToString();
                 switch (type)
                 {
@@ -158,7 +176,7 @@ namespace NeurometerGame
             PictureBox CreateFinalWay(int type)
             {
                 way = new PictureBox();
-                way.BackColor = Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(230)))));
+                way.BackColor = color_palette[2];
                 way.Name = number_of_way.ToString();
                 switch (type)
                 {
@@ -411,10 +429,56 @@ namespace NeurometerGame
             }
         }
 
+        private void ApplyColor()
+        {
+            this.BackColor = color_palette[0];
+            gamePanel.BackColor = color_palette[1];
+            timerPanel.BackColor = color_palette[1];
+            timerPanel.ForeColor = color_palette[5];
+            resetPanel.BackColor = color_palette[2];
+
+            startButton.BackColor = color_palette[2];
+            startButton.ForeColor = color_palette[0];
+            startButton.FlatAppearance.MouseOverBackColor = color_palette[3];
+            startButton.FlatAppearance.MouseDownBackColor = color_palette[4];
+            startButton.FlatAppearance.BorderColor = color_palette[0];
+
+            endButton.BackColor = color_palette[0];
+            endButton.ForeColor = color_palette[2];
+            endButton.FlatAppearance.MouseOverBackColor = color_palette[0];
+            endButton.FlatAppearance.MouseDownBackColor = color_palette[0];
+            endButton.FlatAppearance.BorderColor = color_palette[2];
+
+            foreach (PictureBox i in gamePanel.Controls.OfType<PictureBox>().ToList())
+            {
+                i.BackColor = color_palette[2];
+            }
+
+            menu.BackColor = color_palette[1];
+            foreach (ToolStripMenuItem i in menu.Items)
+            {
+                i.BackColor = color_palette[1];
+                i.ForeColor = color_palette[5];
+                foreach (ToolStripMenuItem j in i.DropDownItems)
+                {
+                    j.BackColor = color_palette[0];
+                    j.ForeColor = color_palette[5];
+                    foreach (ToolStripMenuItem k in j.DropDownItems)
+                    {
+                        k.BackColor = color_palette[0];
+                        k.ForeColor = color_palette[5];
+                    }
+                }
+            }
+        }
+
         public GameWindow()
         {
             InitializeComponent();
+
             CreateNeurometer();
+
+            ApplyColor();
 
             //Convert "." to game default decimal symbol for timer.
             var current = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -468,24 +532,24 @@ namespace NeurometerGame
 
         private void reset_MouseEnter(object sender, EventArgs e)
         {
-            resetPanel.BackColor = Color.FromArgb(5, 136, 220);
+            resetPanel.BackColor = color_palette[3];
         }
 
         private void reset_MouseLeave(object sender, EventArgs e)
         {
-            resetPanel.BackColor = Color.FromArgb(5, 142, 230);
+            resetPanel.BackColor = color_palette[2];
         }
 
         private void reset_MouseDown(object sender, MouseEventArgs e)
         {
-            resetPanel.BackColor = Color.FromArgb(5, 130, 210);
+            resetPanel.BackColor = color_palette[4];
             second.Text = "0.0";
             minutes.Text = "00";
         }
 
         private void reset_MouseUp(object sender, MouseEventArgs e)
         {
-            resetPanel.BackColor = Color.FromArgb(5, 142, 230);
+            resetPanel.BackColor = color_palette[2];
 
             foreach (PictureBox i in gamePanel.Controls.OfType<PictureBox>().ToList())
             {
@@ -493,6 +557,23 @@ namespace NeurometerGame
             }
 
             CreateNeurometer();
+        }
+
+        private void Colors_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem color = (ToolStripMenuItem)sender;
+            foreach (ToolStripMenuItem i in menuOptionsColor.DropDownItems)
+            {
+                i.Checked = false;
+            }
+
+            color.Checked = true;
+            for (int i = 0; i < color_palette.Length; i++)
+            {
+                color_palette[i] = color_palettes[int.Parse(color.Name.Replace("menuOptionsColor", "")), i];
+            }
+
+            ApplyColor();
         }
     }
 }

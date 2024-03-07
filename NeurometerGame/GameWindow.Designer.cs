@@ -46,6 +46,8 @@
             this.menuGameImport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsColor0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsColor1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gamePanel.SuspendLayout();
             this.timerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
@@ -166,7 +168,7 @@
             // reset
             // 
             this.reset.BackColor = System.Drawing.Color.Transparent;
-            this.reset.Image = ((System.Drawing.Image)(resources.GetObject("reset.Image")));
+            this.reset.Image = global::NeurometerGame.Properties.Resources.reset;
             this.reset.Location = new System.Drawing.Point(0, 0);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(50, 50);
@@ -227,10 +229,31 @@
             // menuOptionsColor
             // 
             this.menuOptionsColor.BackColor = System.Drawing.Color.White;
+            this.menuOptionsColor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor0, this.menuOptionsColor1 });
             this.menuOptionsColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptionsColor.Name = "menuOptionsColor";
             this.menuOptionsColor.Size = new System.Drawing.Size(152, 28);
             this.menuOptionsColor.Text = "Color";
+            // 
+            // menuOptionsColor0
+            // 
+            this.menuOptionsColor0.BackColor = System.Drawing.Color.White;
+            this.menuOptionsColor0.Checked = true;
+            this.menuOptionsColor0.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuOptionsColor0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsColor0.Name = "menuOptionsColor0";
+            this.menuOptionsColor0.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor0.Text = "Blue";
+            this.menuOptionsColor0.Click += new System.EventHandler(this.Colors_Click);
+            // 
+            // menuOptionsColor1
+            // 
+            this.menuOptionsColor1.BackColor = System.Drawing.Color.White;
+            this.menuOptionsColor1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsColor1.Name = "menuOptionsColor1";
+            this.menuOptionsColor1.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor1.Text = "Green";
+            this.menuOptionsColor1.Click += new System.EventHandler(this.Colors_Click);
             // 
             // GameWindow
             // 
@@ -261,6 +284,9 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsColor0;
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsColor1;
 
         private System.Windows.Forms.ToolStripMenuItem menuOptions;
         private System.Windows.Forms.ToolStripMenuItem menuOptionsColor;
