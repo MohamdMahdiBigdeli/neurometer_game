@@ -48,6 +48,7 @@
             this.menuOptionsColor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor0 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGame = new System.Windows.Forms.SaveFileDialog();
             this.gamePanel.SuspendLayout();
             this.timerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
@@ -207,6 +208,7 @@
             this.menuGameSave.Name = "menuGameSave";
             this.menuGameSave.Size = new System.Drawing.Size(152, 28);
             this.menuGameSave.Text = "Save";
+            this.menuGameSave.Click += new System.EventHandler(this.menuGameSave_Click);
             // 
             // menuGameImport
             // 
@@ -232,7 +234,7 @@
             this.menuOptionsColor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor0, this.menuOptionsColor1 });
             this.menuOptionsColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptionsColor.Name = "menuOptionsColor";
-            this.menuOptionsColor.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor.Size = new System.Drawing.Size(140, 28);
             this.menuOptionsColor.Text = "Color";
             // 
             // menuOptionsColor0
@@ -242,7 +244,7 @@
             this.menuOptionsColor0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.menuOptionsColor0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptionsColor0.Name = "menuOptionsColor0";
-            this.menuOptionsColor0.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor0.Size = new System.Drawing.Size(140, 28);
             this.menuOptionsColor0.Text = "Blue";
             this.menuOptionsColor0.Click += new System.EventHandler(this.Colors_Click);
             // 
@@ -251,7 +253,7 @@
             this.menuOptionsColor1.BackColor = System.Drawing.Color.White;
             this.menuOptionsColor1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptionsColor1.Name = "menuOptionsColor1";
-            this.menuOptionsColor1.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsColor1.Size = new System.Drawing.Size(140, 28);
             this.menuOptionsColor1.Text = "Green";
             this.menuOptionsColor1.Click += new System.EventHandler(this.Colors_Click);
             // 
@@ -284,6 +286,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.SaveFileDialog saveGame;
 
         private System.Windows.Forms.ToolStripMenuItem menuOptionsColor0;
         private System.Windows.Forms.ToolStripMenuItem menuOptionsColor1;

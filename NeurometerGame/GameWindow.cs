@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NeurometerGame
 {
@@ -24,8 +25,8 @@ namespace NeurometerGame
                 Color.FromArgb(5, 130, 210), Color.FromArgb(5, 118, 190)
             },
             {
-                Color.White, Color.FromArgb( 172 , 246 , 180 ), Color.FromArgb( 21 , 188 , 41 ), Color.FromArgb( 20 , 179 , 39 ),
-                Color.FromArgb( 19 , 170 , 37 ), Color.FromArgb( 17 , 152 , 33 )
+                Color.White, Color.FromArgb(172, 246, 180), Color.FromArgb(21, 188, 41), Color.FromArgb(20, 179, 39),
+                Color.FromArgb(19, 170, 37), Color.FromArgb(17, 152, 33)
             }
         };
 
@@ -574,6 +575,26 @@ namespace NeurometerGame
             }
 
             ApplyColor();
+        }
+
+        private void menuGameSave_Click(object sender, EventArgs e)
+        {
+            saveGame.Filter = "NeurometerGame files (*.neurometer)|*.neurometer";
+            saveGame.FileName = "yor_game";
+            saveGame.DefaultExt = ".neurometer";
+
+            if (saveGame.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter game_file = new StreamWriter(new FileStream(saveGame.FileName, FileMode.Create));
+                game_file.Write(startButton.Location.X + "," + startButton.Location.Y + "\n");
+                game_file.Write(endButton.Location.X + "," + endButton.Location.Y + "\n");
+                foreach (PictureBox i in gamePanel.Controls.OfType<PictureBox>().ToList())
+                {
+                    game_file.Write(i.Location.X + "," + i.Location.Y + "," + i.Width + "," + i.Height + "\n");
+                }
+
+                game_file.Close();
+            }
         }
     }
 }
