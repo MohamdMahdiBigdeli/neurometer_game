@@ -49,6 +49,7 @@
             this.menuOptionsColor0 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveGame = new System.Windows.Forms.SaveFileDialog();
+            this.openGame = new System.Windows.Forms.OpenFileDialog();
             this.gamePanel.SuspendLayout();
             this.timerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
@@ -60,6 +61,7 @@
             // startButton
             // 
             this.startButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(142)))), ((int)(((byte)(230)))));
+            this.startButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.startButton.FlatAppearance.BorderSize = 3;
             this.startButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(130)))), ((int)(((byte)(210)))));
             this.startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(136)))), ((int)(((byte)(220)))));
@@ -169,6 +171,7 @@
             // reset
             // 
             this.reset.BackColor = System.Drawing.Color.Transparent;
+            this.reset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reset.Image = global::NeurometerGame.Properties.Resources.reset;
             this.reset.Location = new System.Drawing.Point(0, 0);
             this.reset.Name = "reset";
@@ -217,6 +220,7 @@
             this.menuGameImport.Name = "menuGameImport";
             this.menuGameImport.Size = new System.Drawing.Size(152, 28);
             this.menuGameImport.Text = "Import";
+            this.menuGameImport.Click += new System.EventHandler(this.menuGameImport_Click);
             // 
             // menuOptions
             // 
@@ -257,6 +261,17 @@
             this.menuOptionsColor1.Text = "Green";
             this.menuOptionsColor1.Click += new System.EventHandler(this.Colors_Click);
             // 
+            // saveGame
+            // 
+            this.saveGame.FileName = "yor_game";
+            this.saveGame.Filter = "NeurometerGame files (*.neurometer)|*.neurometer";
+            this.saveGame.Title = "Saving your game";
+            // 
+            // openGame
+            // 
+            this.openGame.Filter = "NeurometerGame files (*.neurometer)|*.neurometer";
+            this.openGame.Title = "Open yor game";
+            // 
             // GameWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -286,6 +301,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.OpenFileDialog openGame;
 
         private System.Windows.Forms.SaveFileDialog saveGame;
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace NeurometerGame
 {
@@ -495,6 +496,7 @@ namespace NeurometerGame
             second.Text = "0.0";
             minutes.Text = "00";
             timer.Enabled = true;
+            startButton.Cursor = Cursors.Default;
         }
 
         private void gamePanel_MouseEnter(object sender, EventArgs e)
@@ -507,6 +509,7 @@ namespace NeurometerGame
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 second.Text = "0.0";
                 minutes.Text = "00";
+                startButton.Cursor = Cursors.Hand;
             }
         }
 
@@ -518,6 +521,7 @@ namespace NeurometerGame
                 timer.Enabled = false;
                 MessageBox.Show("You reached the end and won!", "Game over!", MessageBoxButtons.OK,
                     MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                startButton.Cursor = Cursors.Hand;
             }
         }
 
@@ -579,8 +583,6 @@ namespace NeurometerGame
 
         private void menuGameSave_Click(object sender, EventArgs e)
         {
-            saveGame.Filter = "NeurometerGame files (*.neurometer)|*.neurometer";
-            saveGame.FileName = "yor_game";
             saveGame.DefaultExt = ".neurometer";
 
             if (saveGame.ShowDialog() == DialogResult.OK)
@@ -594,6 +596,44 @@ namespace NeurometerGame
                 }
 
                 game_file.Close();
+            }
+        }
+
+        private void menuGameImport_Click(object sender, EventArgs e)
+        {
+            openGame.DefaultExt = ".neurometer";
+            if (openGame.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader game_file = new StreamReader(openGame.OpenFile());
+                foreach (PictureBox i in gamePanel.Controls.OfType<PictureBox>().ToList())
+                {
+                    gamePanel.Controls.Remove(i);
+                }
+
+                List<string> lines = game_file.ReadToEnd().Split('\n').ToList(), line;
+                
+                line = lines[0].Split(',').ToList();
+                Point p = new Point(int.Parse(line[0]), int.Parse(line[1]));
+                startButton.Location = p;
+                
+                line = lines[1].Split(',').ToList();
+                p = new Point(int.Parse(line[0]), int.Parse(line[1]));
+                endButton.Location = p;
+
+                PictureBox way;
+                for (int i = 2; i < lines.Count - 1; i++)
+                {
+                    line = lines[i].Split(',').ToList();
+                    p = new Point(int.Parse(line[0]), int.Parse(line[1]));
+                    
+                    way = new PictureBox();
+                    gamePanel.Controls.Add(way);
+                    way.BackColor = color_palette[2];
+                    way.Name = (i - 1).ToString();
+                    way.Location = p;
+                    way.Width = int.Parse(line[2]);
+                    way.Height = int.Parse(line[3]);
+                }
             }
         }
     }
