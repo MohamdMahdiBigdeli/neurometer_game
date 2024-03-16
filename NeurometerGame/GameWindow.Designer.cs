@@ -48,6 +48,10 @@
             this.menuOptionsColor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor0 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOptionsColor1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsDifficulty = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsDifficulty0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsDifficulty1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOptionsDifficulty2 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveGame = new System.Windows.Forms.SaveFileDialog();
             this.openGame = new System.Windows.Forms.OpenFileDialog();
             this.gamePanel.SuspendLayout();
@@ -224,7 +228,7 @@
             // 
             // menuOptions
             // 
-            this.menuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor });
+            this.menuOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor, this.menuOptionsDifficulty });
             this.menuOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptions.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.menuOptions.Name = "menuOptions";
@@ -238,7 +242,7 @@
             this.menuOptionsColor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsColor0, this.menuOptionsColor1 });
             this.menuOptionsColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
             this.menuOptionsColor.Name = "menuOptionsColor";
-            this.menuOptionsColor.Size = new System.Drawing.Size(140, 28);
+            this.menuOptionsColor.Size = new System.Drawing.Size(200, 28);
             this.menuOptionsColor.Text = "Color";
             // 
             // menuOptionsColor0
@@ -260,6 +264,43 @@
             this.menuOptionsColor1.Size = new System.Drawing.Size(140, 28);
             this.menuOptionsColor1.Text = "Green";
             this.menuOptionsColor1.Click += new System.EventHandler(this.Colors_Click);
+            // 
+            // menuOptionsDifficulty
+            // 
+            this.menuOptionsDifficulty.BackColor = System.Drawing.Color.White;
+            this.menuOptionsDifficulty.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuOptionsDifficulty0, this.menuOptionsDifficulty1, this.menuOptionsDifficulty2 });
+            this.menuOptionsDifficulty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsDifficulty.Name = "menuOptionsDifficulty";
+            this.menuOptionsDifficulty.Size = new System.Drawing.Size(200, 28);
+            this.menuOptionsDifficulty.Text = "Difficulty";
+            // 
+            // menuOptionsDifficulty0
+            // 
+            this.menuOptionsDifficulty0.BackColor = System.Drawing.Color.White;
+            this.menuOptionsDifficulty0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsDifficulty0.Name = "menuOptionsDifficulty0";
+            this.menuOptionsDifficulty0.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsDifficulty0.Text = "Easy";
+            this.menuOptionsDifficulty0.Click += new System.EventHandler(this.Difficulty_Click);
+            // 
+            // menuOptionsDifficulty1
+            // 
+            this.menuOptionsDifficulty1.BackColor = System.Drawing.Color.White;
+            this.menuOptionsDifficulty1.Checked = true;
+            this.menuOptionsDifficulty1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuOptionsDifficulty1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsDifficulty1.Name = "menuOptionsDifficulty1";
+            this.menuOptionsDifficulty1.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsDifficulty1.Text = "Normal";
+            this.menuOptionsDifficulty1.Click += new System.EventHandler(this.Difficulty_Click);
+            // 
+            // menuOptionsDifficulty2
+            // 
+            this.menuOptionsDifficulty2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(118)))), ((int)(((byte)(190)))));
+            this.menuOptionsDifficulty2.Name = "menuOptionsDifficulty2";
+            this.menuOptionsDifficulty2.Size = new System.Drawing.Size(152, 28);
+            this.menuOptionsDifficulty2.Text = "Hard";
+            this.menuOptionsDifficulty2.Click += new System.EventHandler(this.Difficulty_Click);
             // 
             // saveGame
             // 
@@ -301,6 +342,13 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsDifficulty2;
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsDifficulty1;
+
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsDifficulty0;
+
+        private System.Windows.Forms.ToolStripMenuItem menuOptionsDifficulty;
 
         private System.Windows.Forms.OpenFileDialog openGame;
 
